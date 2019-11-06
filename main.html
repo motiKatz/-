@@ -1,0 +1,40 @@
+<table border="1" id="table">
+    <tr>
+        <td>name</td>
+        <td>id</td>
+        <td>age</td>
+        <td>porfeshion</td>
+    </tr>
+</table>
+<script>
+    let template = '<tr><th>*name*</th><th>*id*</th><th>*age*</th><th>*porfeshion*</th></tr>'
+    let person = function(name,id,age,porfeshion){
+        this.name = name;
+        this.id = id;
+        this.age = age;
+        this.porfeshion = porfeshion;
+    }
+    let personsArr = [
+        new person("avi",30254,17,"student"),
+        new person("david",669452,32,"doctor"),
+        new person("dani",290164,45,"psychologist"),
+        new person("shuki",392648,21,"student"),
+        new person("baruch",46726145,26,"warden"),
+        new person("yanki",639440,64,"official"), 
+    ]
+   
+    console.log(personsArr)
+    function renderEngine(template,data){
+        let arr = template.split('*')
+        console.log(arr)
+        for (let i = 1; i < arr.length; i++) {
+            arr[i] = data[arr[i]]+data[arr[i++]];
+                } 
+        return arr.join('');
+        }
+        personsArr.forEach(element => {
+        document.querySelector("#table").innerHTML+=renderEngine(template, element)
+    });
+    
+</script>
+
